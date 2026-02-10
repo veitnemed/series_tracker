@@ -2,10 +2,15 @@ import working_on_a_file as file
 import valid as vd
 
 def print_emty_rows(amount):
+    '''Выводи n пустых строк'''
+    
     print('\n'*amount, end='')
     
 
+
 def main_menu():
+    '''Отображает главное меню'''
+
     print('1. Показать все сериалы')
     print('2. Добавить сериалы')
     print('3. Отчистить csv-файл')
@@ -17,8 +22,11 @@ def main_menu():
             break
         print('Некорректный ввод')
     return answer        
-    
+
+
 def end_menu():
+    '''Конечное подменю '''
+
     print('1. Удалить сериал')
     print('2. Главное меню','\n')
     while True:
@@ -30,10 +38,10 @@ def end_menu():
         continue
 
 
-def t():
-    return True
 
 def print_id_del_films():
+    '''Удаление сериала по ID (delete_series)'''
+
     print('Введите ID сериала:', end = ' ') 
     while True:
         id = input().strip()
@@ -46,8 +54,11 @@ def print_id_del_films():
         print_emty_rows(1)
         return id
     
-    
+
+
 def mode_selections():
+    '''Вторая ветка, подменю'''
+
     print('Какие сериалы записать?')
     print('1. Просмотренные')
     print('2. Запланировать просмотр','\n')
@@ -62,8 +73,10 @@ def mode_selections():
         print('Некоректный ввод','\n')
         continue
     
-    
+
+
 def input_films(set_films,status):
+    '''Ввод названия сериала и оценки'''
     
     # Ввод названия сериала, провера на уникиальность и коррктность
     while True:
@@ -87,7 +100,10 @@ def input_films(set_films,status):
     
     file.add_film(film,grade,status)
 
+
 def print_all_serals():
+    '''Вывод всех сериалов из csv'''
+
     csv_list = file.crated_list_csv()
     print('\n','------------------')
     if len(csv_list) == 1:
@@ -103,8 +119,10 @@ def print_all_serals():
 
         print(f'{id}: "{name}" {grade}/10 {status}')
     print_emty_rows(2)
-    
+
+
 def print_back_main():
+    '''Возврат в начальную точку'''
     print('Вернуться в главное меню? ')
     while True:
         ans = input().strip().lower()
