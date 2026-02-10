@@ -15,8 +15,8 @@ def capter_delete_series():
     else:
         print('Вы не можете удалить сериал, так как список пуст!')
 
-def branch_1() -> bool:
-    '''Ветка 1'''
+def show_serials() -> bool:
+    '''Выводим всё содержимое csv файла '''
           
     ui.show_all_serals()
     answer = ui.select_del_or_main()
@@ -33,6 +33,31 @@ def branch_1() -> bool:
     elif answer == '2':
         return True
 
+
+def add_series(set_films)-> bool:
+    '''Вводим название сериала, оценку и проверяем на уникальность '''
+
+    mode_write = ui.mode_selections()
+    
+    while True:
+        
+        ui.input_films(set_films,mode_write)
+        answer = input('Добавить следющий сериал? ')
+                
+        if answer.lower() == 'нет':
+            return False
+        return True
+
+def clean_file()-> bool:
+    '''Отчищаем файл и перезаписываем заголовки '''
+    
+    file.clean_csv_file()
+    answer = ui.print_back_main()
+    if answer == 'нет':
+        return False
+    return True
+    
+
 def running():
     
     if file.is_new_file():
@@ -43,34 +68,22 @@ def running():
         mode = ui.select_main_menu()
 
         if mode == '1':
-            next_step = branch_1()
-            if next_step is True:
-                continue
-            break
-                  
-        elif mode == '2':    
-            mode_write = ui.mode_selections()
-    
-            while True:
-        
-                ui.input_films(set_films,mode_write)
-                answer = input('Добавить следющий сериал? ')
-                
-                if answer.lower() == 'нет':
-                    break
+
+            next_step = show_serials()
+            if next_step is False:
+                break
             
-            ans = ui.print_back_main()
-            if ans in ('да',''):
-                continue
-            if ans == 'нет':
+                  
+        elif mode == '2': 
+
+            next_step = add_series(set_films)
+            if next_step is False:
                 break
             
         elif mode == '3':
-            file.clean_csv_file()
-            ans = ui.print_back_main()
-            if ans in ('да',''):
-                continue
-            if ans == 'нет':
+           
+            next_step = clean_file()
+            if next_step is False:
                 break
         elif mode == '4':
             break
