@@ -17,8 +17,8 @@ def running():
             if answer == '1':
                 if file.is_content():
                     
-                    id = ui.get_id_series()
-                    name = file.delete_series(id) 
+                    id = ui.print_id_del_films()
+                    name = file.del_films(id)
                 
                     print(f'Сериал "{name}" удалён!')
                 else:
@@ -32,13 +32,12 @@ def running():
                 continue
                   
         elif mode == '2':    
-            mode_write = ui.select_mode()
+            mode_write = ui.mode_selections()
     
             while True:
-                
-                film, grade = ui.input_series(set_films,mode_write)
-                file.is_series_in_data(set_films,film)
-                answer = input('Добавить следющий сериал?')
+        
+                ui.input_films(set_films,mode_write)
+                answer = input('Добавить следющий сериал? ')
                 
                 if answer.lower() == 'нет':
                     break

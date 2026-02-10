@@ -6,8 +6,6 @@ def print_emty_rows(amount):
     
 
 def main_menu():
-    '''Главное меню'''
-
     print('1. Показать все сериалы')
     print('2. Добавить сериалы')
     print('3. Отчистить csv-файл')
@@ -21,8 +19,6 @@ def main_menu():
     return answer        
     
 def end_menu():
-    '''Последнее меню'''
-
     print('1. Удалить сериал')
     print('2. Главное меню','\n')
     while True:
@@ -34,9 +30,10 @@ def end_menu():
         continue
 
 
-def get_id_series():
-    '''Ввод ID сериала'''
+def t():
+    return True
 
+def print_id_del_films():
     print('Введите ID сериала:', end = ' ') 
     while True:
         id = input().strip()
@@ -50,9 +47,7 @@ def get_id_series():
         return id
     
     
-def select_mode():
-    '''Перове подменю'''
-
+def mode_selections():
     print('Какие сериалы записать?')
     print('1. Просмотренные')
     print('2. Запланировать просмотр','\n')
@@ -68,7 +63,7 @@ def select_mode():
         continue
     
     
-def input_series(set_films,status):
+def input_films(set_films,status):
     
     # Ввод названия сериала, провера на уникиальность и коррктность
     while True:
@@ -91,7 +86,6 @@ def input_series(set_films,status):
         break
     
     file.add_film(film,grade,status)
-    return (film,grade)
 
 def print_all_serals():
     csv_list = file.crated_list_csv()

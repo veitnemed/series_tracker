@@ -61,7 +61,7 @@ def crated_list_csv():
 def clean_csv_file():
     create_columns()
 
-def delete_series(id):
+def del_films(id):
    
     with open('films.csv','r', encoding='utf-8') as file:
         list_csv = list(csv.reader(file))
@@ -94,13 +94,7 @@ def is_content():
             return False
     return True
                     
-
-def is_series_in_data(set_films, film):
-    if film.replace(' ', '').lower() in set_films:
-        print('Сериал уже есть в списке!')
-        return False
-    return True 
-
+        
         
         
         
