@@ -3,12 +3,12 @@ import valid as vd
 
 def print_emty_rows(amount):
     '''Выводи n пустых строк'''
-    
+
     print('\n'*amount, end='')
     
 
 
-def main_menu():
+def select_main_menu():
     '''Отображает главное меню'''
 
     print('1. Показать все сериалы')
@@ -24,7 +24,7 @@ def main_menu():
     return answer        
 
 
-def end_menu():
+def select_del_or_main():
     '''Конечное подменю '''
 
     print('1. Удалить сериал')
@@ -39,7 +39,7 @@ def end_menu():
 
 
 
-def print_id_del_films():
+def get_id_series():
     '''Удаление сериала по ID (delete_series)'''
 
     print('Введите ID сериала:', end = ' ') 
@@ -101,7 +101,7 @@ def input_films(set_films,status):
     file.add_film(film,grade,status)
 
 
-def print_all_serals():
+def show_all_serals():
     '''Вывод всех сериалов из csv'''
 
     csv_list = file.crated_list_csv()

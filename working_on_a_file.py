@@ -61,7 +61,7 @@ def crated_list_csv():
 def clean_csv_file():
     create_columns()
 
-def del_films(id):
+def delete_series(id):
    
     with open('films.csv','r', encoding='utf-8') as file:
         list_csv = list(csv.reader(file))
