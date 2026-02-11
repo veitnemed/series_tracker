@@ -1,5 +1,6 @@
 import working_on_a_file as file
 import valid as vd
+import os
 
 def print_emty_rows(amount):
     '''Выводи n пустых строк'''
@@ -7,8 +8,10 @@ def print_emty_rows(amount):
     print('\n'*amount, end='')
     
 
+def clean_terminal():
+    os.system('cls')
 
-def select_main_menu():
+def ask_main_menu():
     '''Отображает главное меню'''
 
     print('1. Показать все сериалы')
@@ -17,14 +20,14 @@ def select_main_menu():
     print('4. Выход','\n')
     
     while True:
-        answer = input().strip()
+        answer = input('>> ').strip()
         if vd.is_valid_mode(answer,4):
             break
         print('Некорректный ввод')
     return answer        
 
 
-def select_del_or_main():
+def ask_del_or_back():
     '''Конечное подменю '''
 
     print('1. Удалить сериал')
@@ -39,7 +42,7 @@ def select_del_or_main():
 
 
 
-def get_id_series():
+def ask_id_series():
     '''Удаление сериала по ID (delete_series)'''
 
     print('Введите ID сериала:', end = ' ') 
@@ -56,7 +59,7 @@ def get_id_series():
     
 
 
-def mode_selections():
+def ask_mode_selections():
     '''Вторая ветка, подменю'''
 
     print('Какие сериалы записать?')
@@ -73,6 +76,40 @@ def mode_selections():
         print('Некоректный ввод','\n')
         continue
     
+
+def ask_series(set_series):
+    '''Ввод названия сериала'''
+
+     # Ввод названия сериала, провера на уникиальность и коррктность
+    while True:
+        series_name = input('Введите название сериала: ')
+        
+        if vd.is_valid_name(series_name) is False:
+            print('Некорректный ввод','\n')
+            continue
+        if series_name.replace(' ', '').lower() in set_series:
+            print('Сериал уже есть в списке!')
+            continue
+        break
+    return series_name   
+
+def ask_gread():
+    while True:
+        grade = input('Введиете оценку сериала от 0 до 10: ')
+        if vd.is_correct_grade(grade) is False:
+            print('Некорректный ввод')
+            continue
+        break
+    return grade
+
+def ask_next_series():
+    answer = input('Добавить следющий сериал? ')
+                
+    if answer.lower() == 'нет':
+        return False
+    return True    
+
+
 
 
 def input_films(set_films,status):

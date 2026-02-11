@@ -93,6 +93,12 @@ def is_content():
         if len(csv_list) == 1:
             return False
     return True
+
+def add_set(series_set,series_name):
+    series_set.add(series_name.replace(' ', '').lower())
+    return series_set    
+
+
                     
         
         
