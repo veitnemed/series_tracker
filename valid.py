@@ -39,3 +39,4 @@ def is_correct_answer(answer: str) -> bool:
     if answer.lower() in ('да','нет',''):
         return True
     return False
+

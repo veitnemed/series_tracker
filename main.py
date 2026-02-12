@@ -2,6 +2,7 @@ import ui
 import working_on_a_file as file
 
 
+
 def add_set(set_films,film):
     return set_films.add(film.replace(' ', '').lower())
 
@@ -19,13 +20,13 @@ def capter_delete_series():
 def show_serials() -> bool:
     '''Выводим всё содержимое csv файла '''
           
-    
+    ui.show_all_serals()
     answer = ui.ask_del_or_back()
 
             
     if answer == '1':
         capter_delete_series()
-        ans = ui.print_back_main()
+        ans = ui.ask_back_main()
                 
         if ans in ('да',''):
             return True
@@ -38,18 +39,19 @@ def show_serials() -> bool:
 def add_series(set_series)-> bool:
     '''Вводим название сериала, оценку и проверяем на уникальность '''
 
-    mode_write = ui.ask_mode_selection()
+    mode_write = ui.ask_mode_selections()
     
-
-
     while True:
         series = ui.ask_series(set_series)
-        gread = ui.ask_gread()
+        grade = ui.ask_gread()
+
+        file.add_film(series,grade,mode_write)
+        set_series.add(series.replace(' ', '').lower())
         next_read = ui.ask_next_series()
         if next_read is True:
             continue
         break
-
+        
 
 def clean_file()-> bool:
     '''Отчищаем файл и перезаписываем заголовки '''
@@ -66,13 +68,13 @@ def running():
     
     if file.is_new_file():
             file.create_columns()
-    set_films = file.create_set_films()
+    set_sires = file.create_set_films()
     
     while True:
         mode = ui.ask_main_menu()
 
         if mode == '1':
-            ui.print_emty_rows(50)
+            ui.clean_terminal()
             next_step = show_serials()
             if next_step is False:
                 break
@@ -80,10 +82,10 @@ def running():
                   
         elif mode == '2': 
             ui.clean_terminal()
-            next_step = add_series(set_films)
+            next_step = add_series(set_sires)
             if next_step is False:
                 break
-            
+            2
         elif mode == '3':
             ui.clean_terminal()
             next_step = clean_file()
@@ -92,8 +94,8 @@ def running():
         elif mode == '4':
             break
             
-            
-        
+
+    
+
 if __name__ == '__main__':
     running()
-    
